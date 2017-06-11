@@ -6,14 +6,14 @@
  */
 
 // Load composer
-//require_once __DIR__ . '../vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 // Add you bot's API key and name
-$bot_api_key  = '388018541:AAHaMABhDhRD-Tw_TCpNwQED7qXvq5Glrt8';
-$bot_username = 'devbotod_bot';
+$bot_api_key  = 'your:bot_api_key';
+$bot_username = 'username_bot';
 
 // Define the URL to your hook.php file
-$hook_url     = 'https://telegabot123.herokuapp.com/hook.php';
+$hook_url     = 'https://your-domain/path/to/hook.php';
 
 try {
     // Create Telegram API object
