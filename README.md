@@ -1,55 +1,73 @@
-# Heroku buildpack: PHP [![Build Status](https://travis-ci.org/heroku/heroku-buildpack-php.svg?branch=master)](https://travis-ci.org/heroku/heroku-buildpack-php)
+# PHP Telegram Bot Example
+An A-Z example of Telegram bot using the [PHP Telegram Bot][1] library.
 
-![php](https://cloud.githubusercontent.com/assets/51578/8882982/73ea501a-3219-11e5-8f87-311e6b8a86fc.jpg)
+**Important!** Before getting started with this project, make sure you have read the official [readme][2] to understand how the PHP Telegram Bot library works and what is required to run a Telegram bot.
 
+Let's get started then! :smiley:
 
-This is the official [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for PHP applications.
+This repository aims to demonstrate the usage of all the features offered by the PHP Telegram Bot library and as such contains all example commands.
+Also, it gives an example setup for both the standard usage and using the [PHP Telegram Bot Manager][3] 
 
-It uses Composer for dependency management, supports PHP or HHVM (experimental) as runtimes, and offers a choice of Apache2 or Nginx web servers.
+## 0. Cloning this repository
 
-## Usage
+To start off, you can clone this repository using git:
 
-You'll need to use at least an empty `composer.json` in your application.
+```bash
+$ git clone https://github.com/php-telegram-bot/example-bot.git
+```
 
-    $ echo '{}' > composer.json
-    $ git add composer.json
-    $ git commit -m "add composer.json for PHP app detection"
+or better yet, download it as a zip file:
 
-If you also have files from other frameworks or languages that could trigger another buildpack to detect your application as one of its own, e.g. a `package.json` which might cause your code to be detected as a Node.js application even if it is a PHP application, then you need to manually set your application to use this buildpack:
+```bash
+$ curl -o example-bot.zip https://github.com/php-telegram-bot/example-bot/archive/master.zip
+```
 
-    $ heroku buildpacks:set heroku/php
+Unzip the files to the root of your project folder.
 
-This will use the officially published version. To use the `master` branch from GitHub instead:
+## 1. Making it yours
 
-    $ heroku buildpacks:set https://github.com/heroku/heroku-buildpack-php
+Now you can choose what installation you would like, either the default one or using the [Bot Manager][3] project.
+Depending on which one you choose, you can delete the files that are not required.
 
-Please refer to [Dev Center](https://devcenter.heroku.com/categories/php) for further usage instructions.
+---
 
-## Custom Platform Repositories
+**Default**
+Next, edit the following files, replacing all necessary values with those of your project.
+Thanks to reading the main readme file, you should know what these do.
 
-The buildpack uses Composer repositories to resolve platform (`php`, `hhvm`, `ext-something`, ...) dependencies.
+- `composer.json` (Describes your project and it's dependencies)
+- `set.php` (Used to set the webhook)
+- `unset.php` (Used to unset the webhook)
+- `hook.php` (Used for the webhook method)
+- `getUpdatesCLI.php` (Used for the getUpdates method)
+- `cron.php` (Used to execute commands via cron)
 
-To use a custom Composer repository with additional or different platform packages, add the URL to its `packages.json` to the `HEROKU_PHP_PLATFORM_REPOSITORIES` config var:
+**Bot Manager**
+Using the bot manager makes life much easier, as all configuration goes into a single file, `manager.php`.
 
-    $ heroku config:set HEROKU_PHP_PLATFORM_REPOSITORIES="https://mybucket.s3.amazonaws.com/cedar-14/packages.json"
+If you decide to use the Bot Manager, be sure to [read all about it][4] and change the `require` block in the `composer.json` file:
+```json
+"require": {
+    "php-telegram-bot/telegram-bot-manager": "*"
+}
+```
 
-To allow the use of multiple custom repositories, the config var may hold a list of multiple repository URLs, separated by a space character, in ascending order of precedence.
+Then, edit the following files, replacing all necessary values with those of your project.
 
-If the first entry in the list is "`-`" instead of a URL, the default platform repository is disabled entirely. This can be useful when testing development repositories, or to forcefully prevent the use of unwanted packages from the default platform repository.
+- `composer.json` (Describes your project and it's dependencies)
+- `manager.php` (Used as the main entry point for everything)
 
-For instructions on how to build custom platform packages (and a repository to hold them), please refer to the instructions [further below](#custom-platform-packages-and-repositories).
+---
 
-**Please note that Heroku cannot provide support for issues related to custom platform repositories and packages.**
+Now you can install all dependencies using [composer][5]:
+```bash
+$ composer install
+```
 
-## Development
+## To be continued!
 
-The following information only applies if you're forking and hacking on this buildpack for your own purposes.
-
-### Pull Requests
-
-Please submit all pull requests against `develop` as the base branch.
-
-### Custom Platform Packages and Repositories
-
-Please refer to the [README in `support/build/`](support/build/README.md) for instructions.
-
+[1]: https://github.com/php-telegram-bot/core "php-telegram-bot/core"
+[2]: https://github.com/php-telegram-bot/core#readme "PHP Telegram Bot - README"
+[3]: https://github.com/php-telegram-bot/telegram-bot-manager "php-telegram-bot/telegram-bot-manager"
+[4]: https://github.com/php-telegram-bot/telegram-bot-manager#readme "PHP Telegram Bot Manager - README"
+[5]: https://getcomposer.org/ "Composer"
