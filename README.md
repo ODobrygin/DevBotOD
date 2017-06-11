@@ -6,7 +6,7 @@ An A-Z example of Telegram bot using the [PHP Telegram Bot][1] library.
 Let's get started then! :smiley:
 
 This repository aims to demonstrate the usage of all the features offered by the PHP Telegram Bot library and as such contains all example commands.
-Also, it gives an example setup for both the standard usage and using the [PHP Telegram Bot Manager][3] 
+Also, it gives an example setup for both the standard usage and using the [PHP Telegram Bot Manager][3]  
 
 ## 0. Cloning this repository
 
