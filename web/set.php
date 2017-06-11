@@ -6,7 +6,7 @@
  */
 
 // Load composer
-require_once __DIR__ . '../vendor/autoload.php';
+//require_once __DIR__ . '../vendor/autoload.php';
 
 // Add you bot's API key and name
 $bot_api_key  = '388018541:AAHaMABhDhRD-Tw_TCpNwQED7qXvq5Glrt8';
